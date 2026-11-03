@@ -435,7 +435,7 @@ const TYPES = [
   {k:"other",   name:"Другое",           short:"другое",      words:[]}
 ];
 const T = Object.fromEntries(TYPES.map(t => [t.k, t]));
-const DEFAULT_RATES = {grammar:{min:2}, vocab:{min:3,card:5}, anki:{rev:30,min:6}, speak:{min:2}, read:{min:3,pg:1}, listen:{min:4}, video:{min:5}, write:{min:2}, other:{min:5}};
+const DEFAULT_RATES = {grammar:{min:2}, vocab:{min:3,card:5}, anki:{rev:40,min:6}, speak:{min:2}, read:{min:3,pg:1}, listen:{min:4}, video:{min:5}, write:{min:2}, other:{min:5}};
 
 const PATTERNS =
  '<pattern id="tp-km" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 0H5M0 0V5" style="fill:none;stroke:var(--km);stroke-width:.05"/></pattern>'+
@@ -536,7 +536,7 @@ function migrate(d){
   if(d.params.shape!=="arch") d.params.shape="continent";
   if(!(d.params.rough>=0)) d.params.rough=55;
   if(!(d.params.size>0)) d.params.size=800;
-  if(d.rates && d.rates.anki){ if(d.rates.anki.rev===20) d.rates.anki.rev=30; if(d.rates.anki.min===4) d.rates.anki.min=6; }
+  if(d.rates && d.rates.anki){ if(d.rates.anki.rev===20||d.rates.anki.rev===30) d.rates.anki.rev=40; if(d.rates.anki.min===4) d.rates.anki.min=6; }
   d.rates=mergeRates(d.rates);
   delete d.archive;
   d.log=d.log.filter(e=>e && T[e.type] && e.n>0 && UNITS[e.unit]);
